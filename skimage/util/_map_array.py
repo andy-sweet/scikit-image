@@ -1,8 +1,21 @@
 import numpy as np
-from ._remap import _map_array
+from ._remap import _map_array, _map_array_dense, _map_array_flat
+
 
 
 def map_array(input_arr, input_vals, output_vals, out=None):
+    return _map_array(*_map_array_internal(input_arr, input_vals, output_vals, out))
+
+
+def map_array_dense(input_arr, input_vals, output_vals, out=None):
+    return _map_array_dense(*_map_array_internal(input_arr, input_vals, output_vals, out))
+
+
+def map_array_flat(input_arr, input_vals, output_vals, out=None):
+    return _map_array_flat(*_map_array_internal(input_arr, input_vals, output_vals, out))
+
+
+def _map_array_internal(input_arr, input_vals, output_vals, out=None):
     """Map values from input array from input_vals to output_vals.
 
     Parameters
@@ -54,8 +67,7 @@ def map_array(input_arr, input_vals, output_vals, out=None):
     # ensure all arrays have matching types before sending to Cython
     input_vals = input_vals.astype(input_arr.dtype, copy=False)
     output_vals = output_vals.astype(out.dtype, copy=False)
-    _map_array(input_arr, out_view, input_vals, output_vals)
-    return out
+    return input_arr, out_view, input_vals, output_vals
 
 
 class ArrayMap:

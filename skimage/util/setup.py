@@ -16,7 +16,7 @@ def configuration(parent_package='', top_path=None):
     # std::unordered_map container on some earlier gcc compilers. See:
     # https://stackoverflow.com/a/3973692/224254
     config.add_extension('_remap', sources='_remap.cpp',
-                         include_dirs=[get_numpy_include_dirs()],
+                         include_dirs=[get_numpy_include_dirs(), base_path],
                          language='c++', extra_compile_args=['-std=c++0x'])
 
     return config

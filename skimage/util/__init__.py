@@ -14,7 +14,7 @@ from ._regular_grid import regular_grid, regular_seeds
 from .unique import unique_rows
 from ._invert import invert
 from ._montage import montage
-from ._map_array import map_array
+from ._map_array import map_array, map_array_dense, map_array_flat
 from ._label import label_points
 
 
@@ -40,6 +40,7 @@ __all__ = ['img_as_float32',
            'crop',
            'compare_images',
            'map_array',
+           'map_array_dense',
            'montage',
            'random_noise',
            'regular_grid',
